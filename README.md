@@ -5,6 +5,8 @@ As the name suggests, this is a script to create a matrix-like digital rain anim
 
 Based on Digital Rain jQuery plugin by James Seibel: http://www.jqueryrain.com/2011/05/jquery-digital-rain/
 The original file listed above has been included as: digitalRain.js
+Since this project was started, most of the original code has been rewritten or replaced.
+In fact, contrary to the name of this project, jQuery is no longer a dependency.
 
 My modified version has been named: matrix.js
 The underlying javascript has been modified to dramatically increase performance and reduce overhead.
