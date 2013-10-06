@@ -77,11 +77,13 @@ function digiRainDroplet(row, col, windowheight, time) {
     this.fall = function() {
         row += 1;
         
-        if (row < windowheight && document.getElementById("digiRain" + time + '-' + (row) + '-' + col).getAttribute('visibility') == null){
+        if (row < windowheight){
             document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;opacity:1;');
             for (var i = 1; i < rainheight; i++){
             	if (row >= i){
             		document.getElementById("digiRain" + time + '-' + (row-i) + '-' + col).setAttribute('style', 'visibility:visible;opacity:'+(1 - i/rainheight)+';');
+            	}else{
+            		break;
             	}
             }
         }
