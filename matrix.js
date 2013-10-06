@@ -26,7 +26,7 @@
         $(this).css('font', 'normal normal normal ' + fontsize + 'px "Courier New"');
 
         // characters used in rain
-        var rain = ['Â','µ','Â','¬','Â','¿','Ã','ƒ','Æ','˜','#','$','&','%','Ç','È','º','Ê','„','Ï','´','Ð','ч','а','щ','а','х','ю','г','а','ж','и','л','б','ы','ц','и','т','р','у','с','Д','а','н','о','ф','а','л','ь','ш','и','в','ы','й','э','к','з','е','м','п','л','я','р'];
+        //var rain = ['Â','µ','Â','¬','Â','¿','Ã','ƒ','Æ','˜','#','$','&','%','Ç','È','º','Ê','„','Ï','´','Ð','ч','а','щ','а','х','ю','г','а','ж','и','л','б','ы','ц','и','т','р','у','с','Д','а','н','о','ф','а','л','ь','ш','и','в','ы','й','э','к','з','е','м','п','л','я','р'];
 
         var appendText = '<table>';
         for (i = 0; i < height; i++) {
@@ -35,8 +35,8 @@
 
             var rand;
             for (j = 0; j < width; j++) {
-                rand = Math.floor(Math.random() * rain.length);
-                appendText += ('<td id="digiRain' + time + '-' + i +'-' + j + '" style="visibility: hidden">' + rain[rand] + '</td>');
+                rand = String.fromCharCode(12448 + Math.random() * 96);
+                appendText += ('<td id="digiRain' + time + '-' + i +'-' + j + '" style="visibility: hidden">' + rand + '</td>');
             }
 
             appendText += ('</tr>');
