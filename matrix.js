@@ -97,8 +97,8 @@ function digiRainDroplet(row, col, rh, windowheight, time) {
 $(document).ready(function() {
     var fontSize = 12;
     var fontSizeScale = fontSize + 2;
-    var width = $(document).width() / fontSizeScale * 2;
-    var height = $(document).height() / fontSizeScale;
+    var width = window.screen.width / fontSizeScale * 2;
+    var height = window.screen.height / fontSizeScale;
     $('#DigiRain').digiRain(width, height, 10, 0.5, 100, '#20F54A', fontSize, '#000000');
 
 });
