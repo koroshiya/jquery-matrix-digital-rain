@@ -11,7 +11,7 @@
  *
  */
 
-    function digiRain(width, height, rainheight, freq, speed, fontcolor, fontsize, bgcolor) {
+    function digiRain(width, height, freq, speed, fontcolor, fontsize, bgcolor) {
 
         var time = new Date().getTime();
         var digirain = document.getElementById("DigiRain");
@@ -50,7 +50,7 @@
             var rand = Math.random();
             if (rand < freq) {
                 var c = Math.floor(rand * width);
-                var droplet = new digiRainDroplet(0, c, rainheight, height, time);
+                var droplet = new digiRainDroplet(0, c, height, time);
                 rainDrops.push(droplet);
             }
             var rainTemp = [];
@@ -68,22 +68,28 @@
     };
 
 // Raindrop class
-function digiRainDroplet(row, col, rh, windowheight, time) {
+function digiRainDroplet(row, col, windowheight, time) {
     
-    var rainheight = Math.floor(Math.random() * rh) + 3;
+    var rainheight = 10;
     var dead = false;
-
+	document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;opacity:1;');
     // animation of falling
     this.fall = function() {
         row += 1;
-        if (row < windowheight){
-            document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;');
+        
+        if (row < windowheight && document.getElementById("digiRain" + time + '-' + (row) + '-' + col).getAttribute('visibility') == null){
+            document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;opacity:1;');
+            for (var i = 1; i < rainheight; i++){
+            	if (row >= i){
+            		document.getElementById("digiRain" + time + '-' + (row-i) + '-' + col).setAttribute('style', 'visibility:visible;opacity:'+(1 - i/rainheight)+';');
+            	}
+            }
         }
         if ((row - rainheight) >= 0) {
             if ((row - rainheight) > windowheight) {
                 dead = true;
             }else {
-                document.getElementById("digiRain" + time + '-' + (row - rainheight) + '-' + col).setAttribute('style', 'visibility:hidden;');
+                document.getElementById("digiRain" + time + '-' + (row - rainheight) + '-' + col).setAttribute('style', 'visibility:hidden;opacity:0;');
             }
         }
         return dead;
@@ -95,6 +101,6 @@ function digiRainDroplet(row, col, rh, windowheight, time) {
     var fontSizeScale = fontSize + 2;
     var width = window.screen.width / fontSizeScale * 2;
     var height = window.screen.height / fontSizeScale;
-    digiRain(width, height, 10, 0.5, 100, '#20F54A', fontSize, '#000000');
+    digiRain(width, height, 0.5, 100, '#20F54A', fontSize, '#000000');
 
 
