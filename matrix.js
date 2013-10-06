@@ -11,19 +11,16 @@
  *
  */
 
-(function( $ ){
-
-    $.fn.digiRain = function(width, height, rainheight, freq, speed, fontcolor, fontsize, bgcolor) {
-
-        if (!$(this).is('div')) {return;}
+    function digiRain(width, height, rainheight, freq, speed, fontcolor, fontsize, bgcolor) {
 
         var time = new Date().getTime();
+        var digirain = document.getElementById("DigiRain");
+        var style = 'cursor:default;' +
+                    'color:' + fontcolor + ';' +
+                    'background-color:' + bgcolor + ';' +
+                    'font:normal normal normal ' + fontsize + 'px "Courier New";'
 
-        $(this).css('visibility', 'hidden');
-        $(this).css('cursor', 'default');
-        $(this).css('color', fontcolor);
-        $(this).css('background-color', bgcolor);
-        $(this).css('font', 'normal normal normal ' + fontsize + 'px "Courier New"');
+        digirain.setAttribute('style', 'visibility:hidden;' + style);
 
         // characters used in rain
         //var rain = ['Â','µ','Â','¬','Â','¿','Ã','ƒ','Æ','˜','#','$','&','%','Ç','È','º','Ê','„','Ï','´','Ð','ч','а','щ','а','х','ю','г','а','ж','и','л','б','ы','ц','и','т','р','у','с','Д','а','н','о','ф','а','л','ь','ш','и','в','ы','й','э','к','з','е','м','п','л','я','р'];
@@ -42,9 +39,9 @@
             appendText += ('</tr>');
         }
         appendText += '</table>';
-        $(this).append(appendText);
 
-        $(this).css('visibility', 'visible');
+        digirain.insertAdjacentHTML('beforeend', appendText);
+        digirain.setAttribute('style', 'visibility:visible;' + style);
 
         var rainDrops = [];
 
@@ -69,7 +66,6 @@
         setInterval(this.makeItRain, speed);
 
     };
-})( jQuery );
 
 // Raindrop class
 function digiRainDroplet(row, col, rh, windowheight, time) {
@@ -81,24 +77,24 @@ function digiRainDroplet(row, col, rh, windowheight, time) {
     this.fall = function() {
         row += 1;
         if (row < windowheight){
-            $('#digiRain' + time + '-' + (row) + '-' + col).css('visibility', 'visible');
+            document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;');
         }
         if ((row - rainheight) >= 0) {
             if ((row - rainheight) > windowheight) {
                 dead = true;
             }else {
-                $('#digiRain' + time + '-' + (row - rainheight) + '-' + col).css('visibility', 'hidden');
+                document.getElementById("digiRain" + time + '-' + (row - rainheight) + '-' + col).setAttribute('style', 'visibility:hidden;');
             }
         }
         return dead;
     };
 }
 
-$(document).ready(function() {
+
     var fontSize = 12;
     var fontSizeScale = fontSize + 2;
     var width = window.screen.width / fontSizeScale * 2;
     var height = window.screen.height / fontSizeScale;
-    $('#DigiRain').digiRain(width, height, 10, 0.5, 100, '#20F54A', fontSize, '#000000');
+    digiRain(width, height, 10, 0.5, 100, '#20F54A', fontSize, '#000000');
 
-});
+
