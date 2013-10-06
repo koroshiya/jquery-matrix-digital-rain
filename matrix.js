@@ -74,7 +74,7 @@
 // Raindrop class
 function digiRainDroplet(row, col, rh, windowheight, time) {
     
-    var rainheight = Math.floor(Math.random() * rh) + 1;
+    var rainheight = Math.floor(Math.random() * rh) + 3;
     var dead = false;
 
     // animation of falling
@@ -95,7 +95,10 @@ function digiRainDroplet(row, col, rh, windowheight, time) {
 }
 
 $(document).ready(function() {
-
-    $('#DigiRain').digiRain(200, 100, 10, 0.5, 100, '#20F54A', 12, '#000000');
+    var fontSize = 12;
+    var fontSizeScale = fontSize + 2;
+    var width = $(document).width() / fontSizeScale * 2;
+    var height = $(document).height() / fontSizeScale;
+    $('#DigiRain').digiRain(width, height, 10, 0.5, 100, '#20F54A', fontSize, '#000000');
 
 });
