@@ -26,12 +26,15 @@
         //var rain = ['Â','µ','Â','¬','Â','¿','Ã','ƒ','Æ','˜','#','$','&','%','Ç','È','º','Ê','„','Ï','´','Ð','ч','а','щ','а','х','ю','г','а','ж','и','л','б','ы','ц','и','т','р','у','с','Д','а','н','о','ф','а','л','ь','ш','и','в','ы','й','э','к','з','е','м','п','л','я','р'];
 
         var appendText = '<table>';
-        for (i = 0; i < height; i++) {
+        var i = -1;
+        var j;
+        while (++i < height) {
 
             appendText += '<tr>';
 
             var rand;
-            for (j = 0; j < width; j++) {
+            j = -1;
+            while (++j < width) {
                 rand = String.fromCharCode(12448 + Math.random() * 96);
                 appendText += ('<td id="digiRain' + time + '-' + i +'-' + j + '" style="visibility: hidden">' + rand + '</td>');
             }
@@ -55,7 +58,8 @@
             }
             var rainTemp = [];
             var drop;
-            for (i = 0; i < rainDrops.length; i++) {
+            var i = -1;
+            while(++i < rainDrops.length){
                 drop = rainDrops[i];
                 if(!drop.fall()){rainTemp.push(drop);}
             }
