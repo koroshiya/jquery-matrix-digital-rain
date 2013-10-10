@@ -79,12 +79,9 @@ function digiRainDroplet(row, col, windowheight, time) {
         
         if (row < windowheight){
             document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;opacity:1;');
-            for (var i = 1; i < rainheight; i++){
-            	if (row >= i){
-            		document.getElementById("digiRain" + time + '-' + (row-i) + '-' + col).setAttribute('style', 'visibility:visible;opacity:'+(1 - i/rainheight)+';');
-            	}else{
-            		break;
-            	}
+            var i = 0;
+            while(++i < rainheight && row >= i){
+                document.getElementById("digiRain" + time + '-' + (row-i) + '-' + col).setAttribute('style', 'visibility:visible;opacity:'+(1 - i/rainheight)+';');
             }
         }
         if ((row - rainheight) >= 0) {
@@ -104,5 +101,3 @@ function digiRainDroplet(row, col, windowheight, time) {
     var width = window.screen.width / fontSizeScale * 2;
     var height = window.screen.height / fontSizeScale;
     digiRain(width, height, 0.5, 100, '#20F54A', fontSize, '#000000');
-
-
