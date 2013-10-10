@@ -76,23 +76,29 @@ function digiRainDroplet(row, col, windowheight, time) {
     
     var rainheight = 10;
     var dead = false;
+    var sp = 0.4 + Math.random();
+    var cur = 0;
+    var DROPLET_SPEED = 0.8;
 	document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;opacity:1;');
     // animation of falling
     this.fall = function() {
-        row += 1;
-        
-        if (row < windowheight){
-            document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;opacity:1;');
-            var i = 0;
-            while(++i < rainheight && row >= i){
-                document.getElementById("digiRain" + time + '-' + (row-i) + '-' + col).setAttribute('style', 'visibility:visible;opacity:'+(1 - i/rainheight)+';');
+        cur += sp;
+        if (cur > DROPLET_SPEED){
+            cur -= DROPLET_SPEED;
+            row++;
+            if (row < windowheight){
+                document.getElementById("digiRain" + time + '-' + (row) + '-' + col).setAttribute('style', 'visibility:visible;opacity:1;');
+                var i = 0;
+                while(++i < rainheight && row >= i){
+                    document.getElementById("digiRain" + time + '-' + (row-i) + '-' + col).setAttribute('style', 'visibility:visible;opacity:'+(1 - i/rainheight)+';');
+                }
             }
-        }
-        if ((row - rainheight) >= 0) {
-            if ((row - rainheight) > windowheight) {
-                dead = true;
-            }else {
-                document.getElementById("digiRain" + time + '-' + (row - rainheight) + '-' + col).setAttribute('style', 'visibility:hidden;opacity:0;');
+            if ((row - rainheight) >= 0) {
+                if ((row - rainheight) > windowheight) {
+                    dead = true;
+                }else {
+                    document.getElementById("digiRain" + time + '-' + (row - rainheight) + '-' + col).setAttribute('style', 'visibility:hidden;opacity:0;');
+                }
             }
         }
         return dead;
