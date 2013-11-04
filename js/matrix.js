@@ -14,12 +14,12 @@
  *
  */
 
-    var width = ~~(window.innerWidth / 16);
-    var height = ~~(window.innerHeight / 7);
+    var width = Math.random(window.innerWidth / 16);
+    var height = Math.random(window.innerHeight / 7);
 
     var shadow = true; //set to true to enable fade effect for rain. May cause slowdown.
     var gleam = true; //set to true for gleam effect on first drop in rain stream.
-    var GLOBAL_DIV_ARRAY = new Array();
+    var GLOBAL_DIV_ARRAY = new Array(width);
 
     function buildInit(){ //moved out for proper garbage collection
         var digirain = document.getElementById("DigiRain");
@@ -30,7 +30,6 @@
         var appendText = '<div>';
         var i = -1;
         var j = -1;
-        GLOBAL_DIV_ARRAY = new Array(width);
         while (++j <= width) {
             GLOBAL_DIV_ARRAY[j] = new Array(height);
         }
