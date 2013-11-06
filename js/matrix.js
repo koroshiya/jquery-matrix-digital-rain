@@ -14,8 +14,8 @@
  *
  */
 
-    var width = Math.random(window.innerWidth / 16);
-    var height = Math.random(window.innerHeight / 7);
+    var width = Math.round(window.innerWidth / 16);
+    var height = Math.round(window.innerHeight / 7);
 
     var shadow = true; //set to true to enable fade effect for rain. May cause slowdown.
     var gleam = true; //set to true for gleam effect on first drop in rain stream.
